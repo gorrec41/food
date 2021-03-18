@@ -46,7 +46,8 @@ document.addEventListener('DOMContentLoaded',() =>{
             'hours':hours,
             'minuts':minuts,
             'seconds':seconds,
-            'total': ti,
+            'total': ti
+            
             };  
         };
         function zeroTime(numb){
