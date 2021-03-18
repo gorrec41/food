@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded',() =>{
             'minuts':minuts,
             'seconds':seconds,
             'total': ti
-            
+
             };  
         };
         function zeroTime(numb){
@@ -124,24 +124,34 @@ document.addEventListener('DOMContentLoaded',() =>{
             closeModal()
             });
 
-           
         modal.addEventListener('click',(m)=>{
             const mod=m.target;
             if (mod===modal){
-                closeModal()
-                };
+                closeModal();
+                }
         });
         //---закрываем модалку по ескейп
-        document.addEventListener('keydown',(e)=>{
-            if (e.code==='Escape' && modal.classList.contains('show')){  
-                closeModal()
-            }
-        })
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'Escape' && modal.classList.contains('show')) {
+            closeModal();
+        }
+    });
         //--------------------
-
         //----таймер для вкл модалки
-
+    setTimeout(showModal, 3000);
+    clearTimeout(showModal);
         
         //--------------------------
+    
+    //------------модалка при сколе до футера
+    function byModal() {
+        if (window.pageYOffset+document.documentElement.clientHeight >= document.documentElement.scrollHeight) {
+            showModal();
+            window.removeEventListener('scroll',byModal)
+        }
+    }
+    window.addEventListener('scroll', byModal);
+    
+    //---------------------------------------
         //--------------//------modal---------------------
 }); 
