@@ -153,5 +153,20 @@ document.addEventListener('DOMContentLoaded',() =>{
     window.addEventListener('scroll', byModal);
     
     //---------------------------------------
-        //--------------//------modal---------------------
+    //--------------//------modal---------------------
+
+    //-----------------card---------------------------
+    const cardIteme = document.querySelectorAll('.menu__item')
+    console.log(cardIteme)
+    class CardMenu{
+        constructor(image, subtitle, descr, pricecost, pricetotal, pricecurrency) {
+            this.image = image;
+            this.subtitle = subtitle;
+            this.descr = descr;
+            this.pricecost = pricecost;
+            this.pricetotal = pricetotal;
+            this.pricecurrency = pricecurrency;
+        }
+    }
+     //------------//---card---------------------------
 }); 
