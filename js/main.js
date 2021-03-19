@@ -105,12 +105,15 @@ document.addEventListener('DOMContentLoaded',() =>{
             modal.classList.add('show');
             modal.classList.remove('hide');
             document.body.style.overflow='hidden';
+            clearTimeout(showModal);
         };
 
         function closeModal(){
             modal.classList.add('hide');
             modal.classList.remove('show');
             document.body.style.overflow='';
+            
+            
         };
 
         for (let j = 0; j < modalBtnShow.length; j++) {
@@ -122,6 +125,7 @@ document.addEventListener('DOMContentLoaded',() =>{
 
         modalClose.addEventListener('click', () => {
             closeModal()
+
             });
 
         modal.addEventListener('click',(m)=>{
@@ -134,11 +138,12 @@ document.addEventListener('DOMContentLoaded',() =>{
     document.addEventListener('keydown', (e) => {
         if (e.code === 'Escape' && modal.classList.contains('show')) {
             closeModal();
+            clearTimeout(showModal);
         }
     });
         //--------------------
         //----таймер для вкл модалки
-    setTimeout(showModal, 3000);
+    setTimeout(showModal, 10000);
     clearTimeout(showModal);
         
         //--------------------------
@@ -154,4 +159,60 @@ document.addEventListener('DOMContentLoaded',() =>{
     
     //---------------------------------------
         //--------------//------modal---------------------
+        
+        //------card--------------------------------------
+    class NewCard{
+        constructor(src,alt,title,descr,price,parantSelector){
+        this.src = src;
+        this.alt = alt;
+        this.title = title;
+        this.descr = descr;
+        this.price =price;
+        this.cours=27;
+        this.convertUah();
+        this.parent = document.querySelector(parantSelector);
+        }
+        convertUah(){
+            this.price = this.price * this.cours;
+        }
+        renderHtml(){
+            const elementHtml= document.createElement('div')
+            elementHtml.innerHTML =`
+            <div class="menu__item">
+            <img src=${this.src} alt=${this.alt}>
+            <h3 class="menu__item-subtitle">${this.title}</h3>
+            <div class="menu__item-descr">${this.descr}</div>
+            <div class="menu__item-divider"></div>
+            <div class="menu__item-price">
+                <div class="menu__item-cost">Цена:</div>
+                <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+            </div>`;
+            this.parent.append(elementHtml);
+        }
+    }
+    new NewCard(
+        "img/tabs/vegy.jpg",
+        "vegy",
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container'
+    ).renderHtml();
+    new NewCard(
+        "img/tabs/vegy.jpg",
+        "vegy",
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container'
+    ).renderHtml();
+    new NewCard(
+        "img/tabs/vegy.jpg",
+        "vegy",
+        'Меню "Фитнес"',
+        'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        9,
+        '.menu .container'
+    ).renderHtml();
+        //-----//-card------------------------------------
 }); 
